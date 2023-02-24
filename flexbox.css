@@ -1,0 +1,36 @@
+body {
+    height: 100vh;
+}
+nav {
+    display: flex;
+    background-color: yellow;
+    justify-content: space-evenly;
+    height: 10vh;
+}
+
+a {
+    font-size: 1.4rem;
+}
+
+main {
+    display: flex;
+    align-items: flex-start;
+    height: 80vh;
+}
+
+aside {
+    width: 20%;
+    background-color: orange;
+    height: 100%;
+}
+
+.center {
+    width: 60%;
+    background-color: blue;
+    height: 100%;
+}
+
+footer {
+    background-color: blueviolet;
+    height: 5vh;
+}
