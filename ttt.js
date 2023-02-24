@@ -10,6 +10,7 @@ const squares = document.querySelectorAll('.square');
 console.log(squares);
 // Initialize player
 let player;
+let gameOver = false;
 const xWinsInHTML = document.querySelector('.x');
 const oWinsInHTML = document.querySelector('.oWins');
 let totalWinsX = 0;
@@ -33,6 +34,7 @@ function updateTurnOnDOM() {
 updateTurnOnDOM();
 
 function resetBoard() {
+    gameOver = false;
     count = 0;
     for(let i = 0; i < squares.length; i++) {
         squares[i].innerHTML = '';
@@ -67,11 +69,13 @@ function thereIsAWinner() {
     ]
     for(let i = 0; i < winningConditions.length; i++) {
         if(winningConditions[i][0] === "X" && winningConditions[i][1] === "X" && winningConditions[i][2] === "X" ) {
+            gameOver = !gameOver;
             console.log("X is the winner");
             totalWinsX++;
             xWinsInHTML.innerHTML = totalWinsX;
             setTimeout(resetBoard, 3000);
         } else if(winningConditions[i][0] === "O" && winningConditions[i][1] === "O" && winningConditions[i][2] === "O") {
+            gameOver = !gameOver;
             console.log("O is the winner");
             totalWinsO++;
             oWinsInHTML.innerHTML = `O has ${totalWinsO} wins`;
@@ -84,7 +88,7 @@ function thereIsAWinner() {
 for(let i = 0; i < squares.length; i++) {
     squares[i].addEventListener('click', function() {
         console.log(typeof squares[i].innerHTML);
-        if(!squares[i].innerHTML) {
+        if(!squares[i].innerHTML && !gameOver) {
             if(player === 'X') {
                 squares[i].innerHTML = "X";
                 player = "O";
